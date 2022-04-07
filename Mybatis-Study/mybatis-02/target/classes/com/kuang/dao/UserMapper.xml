@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.UserMapper">
+<!--    //查询全部用户-->
+    <select id="getUserList" resultType="User">
+        select * from users
+    </select>
+<!--    //根据ID查询用户-->
+    <select id="getUserById" parameterType="int" resultType="com.kuang.pojo.User">
+        select * from users where uid = ${id};
+    </select>
+    <!--对象中的属性 可以直接取出-->
+    <insert id="addUser" parameterType="com.kuang.pojo.User">
+        insert into users(uid,uname,uage) values(#{uid},#{uname},#{uage});
+    </insert>
+<!--    //修改用户-->
+    <update id="updateUser" parameterType="com.kuang.pojo.User">
+        update users set uname=#{uname},uage=#{uage} where uid = #{uid};
+    </update>
+<!--    //删除一个用户-->
+    <delete id="deleteUser" parameterType="int">
+        delete from users where uid = #{id};
+    </delete>
+</mapper>
